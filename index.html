@@ -339,7 +339,7 @@ a[class^='float'].float-right {
   <center><p class="latexCode">$$W1X1 + W2X2 + W3X3 + b_1$$</p></center>
   <br>
 
-  <p>We see that the above quantity is linear. However, there is a good chance that our dataset is non-linear and we want to learn a non-linear mapping between our inputs and targets. To introduce this non-linearity into the network, we apply a mathemaitcal operation $f$, known as an activation function, on the computed linear combination. Applying this activation function leaves us with the following quantity</p> 
+  <p>We see that the above quantity is linear. However, there is a good chance that our dataset is non-linear and we want to learn a non-linear mapping between our inputs and targets. To introduce this non-linearity into the network, we apply a mathematical operation $f$, known as an activation function, on the computed linear combination. Applying this activation function leaves us with the following quantity</p> 
 
   <center><p class="latexCode">$$f\left(W1X1 + W2X2 + W3X3 + b_1\right)$$</p></center>
   <br>
@@ -400,7 +400,7 @@ a[class^='float'].float-right {
   <li>No Vanishing Gradient - There is no vanishing gradient with a linear activation function.</li>
   <li>No Exploding Gradient - There is no exploding of the gradient with a linear activation function.</li>
   <li>No Saturated Neurons - There is no saturated neurons with a linear activation function.</li>
-  <li>No Dead Neurons - There are no dead nuerons with a linear activation function.</li>
+  <li>No Dead Neurons - There are no dead neurons with a linear activation function.</li>
   </ul>
   <h4>Conclusion:</h4>
   <p>The linear activation function is perfectly suited to tasks where we have a linear behavior in our data. We typically use a linear activation in the output layer of our neural network if we have a regression problem. The linear activation is not commonly used in the hidden layers.
@@ -411,9 +411,9 @@ a[class^='float'].float-right {
 
   <h4>Drawbacks:</h4>
   <ul>
-  <li>Vanishing Gradient - When we apply a large negative to the sigmoid we get close to a 0 value. When we apply a large positive to the sigmoid we get close to a 1 value. If we look at the gradients at these tail regions we see that we effectively have a 0 value. During backpropogation we multiply the local gradient to the gradient of the previous gate's output. If we have a small local gradient we will have a vanishing gradient and will thus have no signal for weight update. Thus, the sigmoid function suffers from the vanishing gradient problem as the learning process stops and the weights stop updating with increasing epochs as the gradient has fallen to 0. There needs to be a nonzero gradient for the weights to be updated.</li>
+  <li>Vanishing Gradient - When we apply a large negative to the sigmoid we get close to a 0 value. When we apply a large positive to the sigmoid we get close to a 1 value. If we look at the gradients at these tail regions we see that we effectively have a 0 value. During back propagation we multiply the local gradient to the gradient of the previous gate's output. If we have a small local gradient we will have a vanishing gradient and will thus have no signal for weight update. Thus, the sigmoid function suffers from the vanishing gradient problem as the learning process stops and the weights stop updating with increasing epochs as the gradient has fallen to 0. There needs to be a nonzero gradient for the weights to be updated.</li>
   <li>Saturated Neurons - When we initialize the weights to our network we have to be careful. If our weight initialization is too large then most neurons become saturated thus not allowing the network to properly learn. This can cause class imbalance irrespective of the input sample.</li>
-  <li>Non-Zero Centered Outputs - Since our range is between 0 and 1 we always have positive data coming into the next neuron. This will cause the gradient on the weights to become all positive or all negative duing backpropogation.</li>
+  <li>Non-Zero Centered Outputs - Since our range is between 0 and 1 we always have positive data coming into the next neuron. This will cause the gradient on the weights to become all positive or all negative during back propagation.</li>
   </ul>
   <p>When we apply a large negative number to the sigmoid we get a 0 value and when we apply large positive numbers to the sigmoid we get a 1. When we look at these extreme tail regions we see that the gradient is almost 0. As we apply sigmoid after sigmoid we see that</p> 
   <h4>Benefits:</h4>
@@ -421,7 +421,7 @@ a[class^='float'].float-right {
   <li>No Exploding Gradients - The sigmoid function does not cause an explosion in gradients when activation after activation function is applied. We see that the maximum range the function can take on is 1 after the sigmoid is applied and that the derivative peaks out at the range 0.25 for any real number so the gradients will never explode in magnitude.</li>
   </ul>
   <h4>Conclusion:</h4>
-  <p>The sigmoid function has been widely used for a long time. In general it was used for cases where we are predicting the probability as an output since it outputs values in the range of 0,1 and probabilities only exist between this range. The probabilities from the sigmoid do not always sum to one so using this activation function can be useful in cases where there are multiple true answers instead of one correct classification or multiclass classification. For instance, we would want to use the sigmoid function in the output layer if we showed a network a picture that contained multiple cars and humans. Here we would want the network to produce a probability that each car was a car and that each human was a car. Here we do not need all the probabilites to sum to 1. This would allow us to detect the multiple cars in the image and discern them from the people in the image. We would not want to use the sigmoid if we have a multiclass classification problem where there was just one correct answer for which class is present in the image or data. For instance, we would not use the sigmoid to determine if an image is a cat or a dog or a bird, since we would desire the output probability to sum to one, thus not making it a probability distribution. There is an alternate activation function called the softmax which performs this, thus the sigmoid is not desirable in the case of a multiclass classification problem. However, if we have a binary classification problem the sigmoid and softmax will perform equally well with the sigmoid function being a more simple operation. Additionally, we would not use the sigmoid activation function in the output layer for a regression problem since we would desire an unbounded range and the sigmoid is constrained between the range of 0 to 1. Thus, if the sigmoid is used it is used in the output layer if we are seeking the probability of multiple "true" answers such as the presence of various objects in an image. Additionally, we could use it for the output layer in a binary classification problem. However, it should most likely not be used in hidden layers.</p> 
+  <p>The sigmoid function has been widely used for a long time. In general it was used for cases where we are predicting the probability as an output since it outputs values in the range of 0,1 and probabilities only exist between this range. The probabilities from the sigmoid do not always sum to one so using this activation function can be useful in cases where there are multiple true answers instead of one correct classification or multi-class classification. For instance, we would want to use the sigmoid function in the output layer if we showed a network a picture that contained multiple cars and humans. Here we would want the network to produce a probability that each car was a car and that each human was a car. Here we do not need all the probabilities to sum to 1. This would allow us to detect the multiple cars in the image and discern them from the people in the image. We would not want to use the sigmoid if we have a multi-class classification problem where there was just one correct answer for which class is present in the image or data. For instance, we would not use the sigmoid to determine if an image is a cat or a dog or a bird, since we would desire the output probability to sum to one, thus not making it a probability distribution. There is an alternate activation function called the softmax which performs this, thus the sigmoid is not desirable in the case of a multi-class classification problem. However, if we have a binary classification problem the sigmoid and softmax will perform equally well with the sigmoid function being a more simple operation. Additionally, we would not use the sigmoid activation function in the output layer for a regression problem since we would desire an unbounded range and the sigmoid is constrained between the range of 0 to 1. Thus, if the sigmoid is used it is used in the output layer if we are seeking the probability of multiple "true" answers such as the presence of various objects in an image. Additionally, we could use it for the output layer in a binary classification problem. However, it should most likely not be used in hidden layers.</p> 
 
 
 
@@ -433,7 +433,7 @@ a[class^='float'].float-right {
   <h4>Drawbacks:</h4>
   <ul>
   <li>Vanishing Gradients - Like the sigmoid, the tanh has the problem of vanishing gradients.</li>
-  <li>Saturated Neurons - Like the sigmoid, the tanh has the probelem of saturated gradients.</li>
+  <li>Saturated Neurons - Like the sigmoid, the tanh has the problem of saturated gradients.</li>
   </ul>
 
   <h4>Benefits:</h4>
@@ -442,8 +442,8 @@ a[class^='float'].float-right {
   <li>No Exploding Gradients - Like the sigmoid, the tanh does not have the problem of exploding gradients.</li>
   </ul>
 
-  <h4>Conculsion:</h4>
-  <p>The tanh is preferred to the sigmoid when we are choosing what activations we should use in the hidden layers and this is highly due to the zero-centered activation value property. It is still not as desirable as some alternate activation function called the ReLu but is preferred over the sigmoud. The tanh should not be used in the output layer if an output probability is desired as it produces values in the range -1 to 1 not 0 to 1 like the sigmoid. It can be used to discern classes in a binary classification problem as negative values can learn more towards one class and positive values can learn more towards another class. However, for classification tasks the softmax activation is preferred with the sigmoid trailing behind it. In summary, the tanh is preferred to the sigmoid for use in the hidden layers but for classification and regression problems it is not as desirable for use in the output layer.</p>
+  <h4>Conclusion:</h4>
+  <p>The tanh is preferred to the sigmoid when we are choosing what activations we should use in the hidden layers and this is highly due to the zero-centered activation value property. It is still not as desirable as some alternate activation function called the ReLu but is preferred over the sigmoid. The tanh should not be used in the output layer if an output probability is desired as it produces values in the range -1 to 1 not 0 to 1 like the sigmoid. It can be used to discern classes in a binary classification problem as negative values can learn more towards one class and positive values can learn more towards another class. However, for classification tasks the softmax activation is preferred with the sigmoid trailing behind it. In summary, the tanh is preferred to the sigmoid for use in the hidden layers but for classification and regression problems it is not as desirable for use in the output layer.</p>
 
   <h2>The ReLU:</h2>
 
@@ -451,14 +451,14 @@ a[class^='float'].float-right {
   <p>The rectified linear unit, or ReLu, is a <b>piece-wise linear</b> function. It has range 0 to $\infty$ and is <b>monotonic</b>. Additionally it is <b>Asymmetrical</b>. It has non-zero derivative at positive inputs and zero derivative at non-positive inputs. The ReLU is simply a threshold at zero.</p>
   <h4>Drawbacks:</h4>
   <ul>
-  <li>Dead Neurons - During training, ReLU units can die. If we have a large gradient that is flowing through a ReLU neuron this can cause the weights to update in a way such that the neuron will never activate on any datapoint again. This will cause the gradient to forever be zero from that point on and the weights to not be updated during gradient descent. The sigmoid and tanh functions at least always have a small gradient allowing them to recover in the long term. Once the neuron dies with a ReLU it is very hard to recover. </li>
+  <li>Dead Neurons - During training, ReLU units can die. If we have a large gradient that is flowing through a ReLU neuron this can cause the weights to update in a way such that the neuron will never activate on any data point again. This will cause the gradient to forever be zero from that point on and the weights to not be updated during gradient descent. The sigmoid and tanh functions at least always have a small gradient allowing them to recover in the long term. Once the neuron dies with a ReLU it is very hard to recover. </li>
   </ul>
   <h4>Benefits:</h4>
   <ul>
   <li>No Vanishing Gradient - The ReLU has no vanishing gradient problem like the sigmoid or tanh. </li>
   <li>No Exploding Gradient - The ReLU does not explode the gradient.</li>
   <li>No Saturated Neurons - The ReLU does not produce saturated neurons. It also has a linear form that speeds up the convergence of stochastic gradient descent compared to the sigmoid and tanh functions.</li>
-  <li>No Complex Mathematical Operations - Compared to the sigmoid or tanh activation functions, the ReLU does not involve complex operations like expoentials. It is a simple operation by simply thresholding a matrix of activations at zero.</li>
+  <li>No Complex Mathematical Operations - Compared to the sigmoid or tanh activation functions, the ReLU does not involve complex operations like exponentials. It is a simple operation by simply thresholding a matrix of activations at zero.</li>
   </ul>
   <h4>Conclusion:</h4>
   <p>The ReLU is the most common activation function chosen to be used inside hidden layers. It is generally better to use than the sigmoid or tanh functions in the hidden layers. If one is confused with what activation function to use in the hidden layers, the ReLU is a great first choice. ReLU activation functions should only be used in the hidden layers as we prefer output layers to have softmax activations for classification problems (or sigmoid for binary classification) and regression problems to have a linear activation on the output layer.</p>
@@ -476,12 +476,12 @@ a[class^='float'].float-right {
   <p>The Leaky ReLU is a good choice for hidden layer units if one experiences a vanishing gradient. In general the ReLU is used more often in the hidden layers compared to the Leaky ReLU. The Leaky ReLU is not used in the output layers for classification and regression probelms.</p>
 
   <h2>The Softmax:</h2>
-  <p>The softmax is a logistic function with the condition that the probabilities values from the application of the softmax must sum to 1. This makes it highly desirable for the output layer in a multiclass or binary classification problem. The softmax is generally not used in hidden layers as it can introudce linear dependence on our nodes which can result in problems. However, a softmax can be used in the hidden layer if we are building an attention mechanism.</p>
+  <p>The softmax is a logistic function with the condition that the probabilities values from the application of the softmax must sum to 1. This makes it highly desirable for the output layer in a multi-class or binary classification problem. The softmax is generally not used in hidden layers as it can introduce linear dependence on our nodes which can result in problems. However, a softmax can be used in the hidden layer if we are building an attention mechanism.</p>
   
 
 
   <h2>What to use:</h2>
-  <p>In summary we should use a softmax activation for a multiclass or binary classification problem in the output layer. We could use a sigmoid in the output layer for a binary classification problem. If we have a regression problem we should use a linear activation in the output layer. In the hidden layers we should try a ReLU activation but shift to a Leaky ReLU if we experience dead neurons. The ReLU and leaky ReLU should not be used in the output layers for our classification or regression problems. The tanh can be used in the hidden layers but a ReLU is preferred over it.</p>
+  <p>In summary we should use a softmax activation for a multi-class or binary classification problem in the output layer. We could use a sigmoid in the output layer for a binary classification problem. If we have a regression problem we should use a linear activation in the output layer. In the hidden layers we should try a ReLU activation but shift to a Leaky ReLU if we experience dead neurons. The ReLU and leaky ReLU should not be used in the output layers for our classification or regression problems. The tanh can be used in the hidden layers but a ReLU is preferred over it.</p>
 
 
 </main>
