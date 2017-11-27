@@ -456,7 +456,7 @@ a[class^='float'].float-right {
   </ul>
   <h4>Benefits:</h4>
   <ul>
-  <li>No Vanishing Gradient - The ReLU has no vanishing gradient problem like the sigmoid or tanh. </li>
+  <li>No Vanishing Gradient - The ReLU has no vanishing gradient problem like the sigmoid or tanh. This is because the gradient is either 0 or 1, which means it never saturates, and so gradients cannot vanish — they are transferred perfectly across the network. </li>
   <li>No Exploding Gradient - The ReLU does not explode the gradient.</li>
   <li>No Saturated Neurons - The ReLU does not produce saturated neurons. It also has a linear form that speeds up the convergence of stochastic gradient descent compared to the sigmoid and tanh functions.</li>
   <li>No Complex Mathematical Operations - Compared to the sigmoid or tanh activation functions, the ReLU does not involve complex operations like exponentials. It is a simple operation by simply thresholding a matrix of activations at zero.</li>
